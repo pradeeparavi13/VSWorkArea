@@ -1,0 +1,203 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="container-fluid">
+  <h1 style="margin-left:25px;">
+    Employee Management
+  </h1>
+  <h5 style="margin-left:25px; color:grey;font-size: 20px;">Open Book Assignment submitted by Pradeepa Ravichandran</h5>
+
+  <form #myForm = "ngForm">
+
+    <div>
+      <button  class="button"  (click)="changeBtName('Create',myForm)">Create</button>
+      <button  class="button"   (click)="changeBtName('Read',myForm)">Read</button>
+      <button  class="button"   (click)="changeBtName('Update',myForm)">Update</button>
+      <button  class="button"   (click)="changeBtName('Delete',myForm)">Delete</button>
+    </div>
+    <div class="top-block-line">
+    </div>
+
+    <!-- <div >
+      <h2 style="margin: auto"> User Details</h2>
+      <button class="btn btn-danger" style="width:100px" (click)="getEmployee()"> Add User</button>
+      <table >
+        <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>UserName</th>
+          <th>Age</th>
+          <th>Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+          <td class="hidden">{{emp.id}}</td>
+          <td>{{emp.firstName}}</td>
+          <td>{{emp.lastName}}</td>
+          <td>{{emp.email}}</td>
+          <td>{{emp.phone}}</td>
+          <td>{{emp.gender}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div> -->
+
+
+     <div style="width: 75%;align-self: left;margin-left:25px;margin-top: 25px;">
+
+      <label class="label" style="margin-top:10px;color: rgb(92, 63, 138);font-weight: bold">{{lblBtChange}}</label>
+    
+    <div class="top-block-line" style="width: 60%;align-self: left;margin-bottom:25px;border-bottom-width: 3px;">
+    </div>
+  </div>
+
+    <div *ngIf="btRead" style="width: 75%;align-self: left;margin-left:25px;margin-top: 25px;">
+
+
+        <table>
+            <tr>
+              <td>
+                <label class="label">Employee ID</label>
+              </td>
+              <td>
+                  <div ng-class="form-group">
+                    <input required  [(ngModel)]="emp.empID" min="1" type="number" class="form-control" name="empID" #empID="ngModel">
+                    <div class="alert alert-danger" *ngIf="empID.touched && empID.invalid">
+                        <div *ngIf="empID.touched && empID.errors.required">Employee ID is required</div>
+                        <!-- <div *ngIf="empID.touched && empID.errors.pattern">
+                           Please Enter valid Employee ID  </div> -->
+                        </div>
+                <!-- <input  ngModel name="employeeId" #employeeId="ngModel" (change)="log(employeeId)" 
+                 id="employeeId"
+                 type="text" class="form-control" required> -->
+                  </div>
+                  <!-- <div ng-class="form-group">
+                      <input  required minlength="3" [(ngModel)]="emp.firstName" 
+                      type="text"  class="form-control" name="firstName" #firstName="ngModel">
+                  <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+                  <div *ngIf="firstName.touched && firstName.errors.required">FirstName is required</div>
+                  <div *ngIf="firstName.touched && firstName.errors.minlength">
+                    FirstName should be minimum {{firstName.errors.minlength.requiredLength}} character</div>
+                  </div> 
+                </div> -->
+
+              </td>
+            </tr>
+        <tr>
+          <td colspan="2" style="padding-left: 40%;">
+            <button class="button" (click)="getEmployee()" >Read</button></td>
+        </tr>
+      </table>
+      <div class="top-block-line" style="width: 60%;align-self: left;margin-bottom:25px;">
+      </div>
+    </div>
+
+
+
+    
+    <div style="width: 75%;align-self: left;margin-left:25px;margin-top:25px;">
+      <table>
+        <tr >
+          <td>
+             <label class="label">FirstName</label>
+          </td>
+          <td>
+               <div ng-class="form-group">
+                  <input  required minlength="3" pattern="[a-zA-Z ]*" [(ngModel)]="emp.firstName" 
+                  type="text"  class="form-control" name="firstName" #firstName="ngModel" (change)="log(firstName)" >
+              <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+              <div *ngIf="firstName.touched && firstName.errors.required">FirstName is required</div>
+              <div *ngIf="firstName.touched && firstName.errors.minlength">
+                FirstName should be minimum {{firstName.errors.minlength.requiredLength}} character</div>
+                <div *ngIf="firstName.touched && firstName.errors.pattern">
+                  Enter only alphabets</div>
+              </div> 
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+            <td>
+              <label class="label">LastName</label>
+            </td>
+            <td>
+                <div ng-class="form-group">
+                    <input  required minlength="3" pattern="[a-zA-Z ]*" [(ngModel)]="emp.lastName" name="lastName" #lastName="ngModel" id="lastName"
+                    type="text" class="form-control">
+                    <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+                        <div *ngIf="lastName.touched && lastName.errors.required">LastName is required</div>
+                        <div *ngIf="lastName.touched && lastName.errors.minlength">
+                          LastName should be minimum {{lastName.errors.minlength.requiredLength}} character</div>
+                          <div *ngIf="lastName.touched && lastName.errors.pattern">
+                              Enter only alphabets</div>
+                        </div>    
+                      </div>        
+                    </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="label">Email</label>
+            </td>
+            <td>
+              <div ng-class="form-group">
+                  <input  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]=emp.email name="email" #email="ngModel" (change)="log(email)" id="email"
+                  type="text" class="form-control" >
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            <div *ngIf="email.touched && email.errors.required">email is required</div>
+            <div *ngIf="email.touched && email.errors.pattern">
+                email is not {{email.errors.pattern.requiredpattern}} valid  </div>
+            </div>
+          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="label">Phone</label>
+            </td>
+            <td>
+              <div ng-class="form-group">
+                  <input required pattern="[0-9]{10}"  [(ngModel)]="emp.phoneNo"  name="phone" #phone="ngModel"  id="phone"
+                  type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+            <div *ngIf="phone.touched && phone.errors.required">phone Number is required</div>
+            <div *ngIf="phone.touched && phone.errors.pattern">
+                Phone Number Should be {{phone.errors.pattern.requiredpattern}} 10 Digits  </div>
+            </div>
+            </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="label">Gender</label>
+            </td>
+            <td>
+              <div ng-class="form-group">
+                <div class="form_control">
+              <input type="radio" [(ngModel)]="emp.gender" id="gender"   name="gender" #gender="ngModel"  value="male">Male
+              <input type="radio" [(ngModel)]="emp.gender" id="gender"  name="gender" #gender="ngModel"  value="female">Female
+            </div>
+            </div>
+            </td>
+          </tr>
+          <tr *ngIf="btRead1">
+            <td colspan="2" style="padding-left: 40%;padding-top: 20px;">
+              <button class="button" (click)="SubmitEmployee(myForm)" novalidate>{{btName}}</button></td>
+          </tr>
+      </table>
+    </div> 
+
+  </form>
+
+
+  <!--<p>The input's valid state is:</p>-->
+  <!-- <h1>{{form.phone.valid}}</h1> -->
+
+
+</div>
+
+<router-outlet></router-outlet>

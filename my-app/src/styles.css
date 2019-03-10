@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+.label {
+    color: rgb(32, 137, 151);
+    font-size: 25 px;
+    padding: 8px;
+  }
+
+  .form-group{
+      width: 90%;
+  }
+
+  input[type=text], select {
+    width: 35%;
+    box-align:right;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }.btn-group .button {
+    background-color: #4CAF50; /* Green */
+    border: 1px solid green;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+  }
+
+
