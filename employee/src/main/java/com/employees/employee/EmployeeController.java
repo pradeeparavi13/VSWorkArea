@@ -26,6 +26,7 @@ public class EmployeeController{
 	@RequestMapping("/employees/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public EmployeeDTO getEmployee(@PathVariable Integer id) {
+		System.out.print("Hi this is to test");
 		return employeeService.getEmployee(id);
 		
 	}
@@ -45,8 +46,8 @@ public class EmployeeController{
 	
 	@RequestMapping(method = RequestMethod.DELETE, value="/employees/{id}")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public void deleteEmployee( @PathVariable String id) {
-		employeeService.deleteEmployee(Integer.parseInt(id));
+	public void deleteEmployee( @PathVariable Integer id) {
+		employeeService.deleteEmployee(id);
 	}
 
 }
